@@ -13,12 +13,12 @@ class WordsController < ApplicationController
         end
       end
     
-      # def show
-        # render json: Word.find(params[:id])
-      # end
+      def show
+        render json: Word.find(params[:id])
+      end
 
       def show
-        render json: Word.find_by(params[:alphabet])
+        render json: Word.find_by(alphabet: params[:id])
       end
     
       def update
