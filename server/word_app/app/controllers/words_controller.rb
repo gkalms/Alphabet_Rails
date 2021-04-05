@@ -3,23 +3,23 @@ class WordsController < ApplicationController
         render json: Word.all
       end
     
-      def create
-        word = Word.create(alphabet: params[:alphabet], words: params[:words])
-        word_valid = word.valid?
-        if word_valid
-          render json: { message: 'Succesful creation' }, status: 200
-        else
-          render json: { message: 'Unsuccesful creation attempt' }, status: 400
-        end
-      end
+      # def create
+      #   word = Word.create(alphabet: params[:alphabet], words: params[:words])
+      #   word_valid = word.valid?
+      #   if word_valid
+      #     render json: { message: 'Succesful creation' }, status: 200
+      #   else
+      #     render json: { message: 'Unsuccesful creation attempt' }, status: 400
+      #   end
+      # end
     
       def show
         render json: Word.find(params[:id])
       end
 
-      def show
-        render json: Word.find_by(alphabet: params[:id])
-      end
+      # def show
+        # render json: Word.find_by(alphabet: params[:id])
+      # end
     
       def update
         word = Word.find(params[:id])
