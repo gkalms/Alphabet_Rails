@@ -1,28 +1,21 @@
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { WordList } from "./components/word/WordList";
-import { WordEdit } from "./components/word/WordEdit";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { AlphaWordContainer } from "./Components/AlphaWordContainer";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
+    <Router>
+      <div>
+        <Link to="/homepage">Home Page</Link>
         <Switch>
-          {/* <Route exact path="/word/create"> */}
-            {/* <h1>Words create</h1> */}
-          {/* </Route> */}
-
-          <Route exact path="/words/edit/:id">
-            <WordEdit />
-          </Route>
-
-          <Route exact path="/">
-            <WordList />
+          <Route path="/homepage">
+            <AlphaWordContainer />
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
-export default App;
+export { App }
