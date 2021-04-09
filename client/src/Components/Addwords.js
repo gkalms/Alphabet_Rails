@@ -1,40 +1,55 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const AddWords = (props) => {
-
-  const [formState, setFormState] = useState({
+export const AddWords = () => {
+  const [create, setCreate] = useState({
     alphabet: "",
-    words: ""
-  })
+    words: "",
+  });
 
   const handleChange = (e) => {
-
-    const newState = { ...formState }
+    const newState = { ...create };
     newState[e.target.name] = e.target.value;
-    setFormState(newState);
-  }
+    setCreate(newState);
+  };
+
+  useEffect(() => {
+    fetch("/words")
+      .then((response) => response.json())
+      .then((create) => setCreate(create));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.submit(formState.alphabet, formState.words);
-  }
+    fetch("/words", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(create),
+    });
+  };
 
   return (
     <div>
-      <h2>Add word</h2>
-
+      <h1>Add word</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Letter
-        <input name="alphabet" value={formState.alphabet} onChange={handleChange}></input>
+          Alphabet
+          <input
+            name="alphabet"
+            value={create.alphabet}
+            onChange={handleChange}
+          ></input>
         </label>
         <label>
           Word
-        <input name="words" value={formState.words} onChange={handleChange}></input>
+          <input
+            name="words"
+            value={create.words}
+            onChange={handleChange}
+          ></input>
         </label>
-        <button type="submit">
-          Submit
-      </button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

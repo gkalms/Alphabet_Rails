@@ -1,21 +1,31 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { AlphaWordContainer } from "./Components/AlphaWordContainer";
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import { AlphaWordContainer } from "./Components/AlphaWordContainer";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
-import { WordEdit } from './archive/WordEdit';
-import { WordList } from './archive/WordList';
+import { Alphabet } from "./Components/Play";
+import { AddWords } from "./Components/AddWords";
+import { WordEdit } from "./Components/WordEdit";
+import { WordList } from "./Components/WordList";
+import { WordDelete } from "./Components/WordDelete";
 
 const App = () => {
   return (
     <Router>
       <div>
-        <Link to="/homepage">Home Page</Link>
+        <Alphabet />
+        <Link to="/AddWords">Add</Link>
+        <Link to="/WordEdit">Edit</Link>
+        <Link to="/WordDelete">Delete</Link>
+        <Link to="/WordList">List</Link>
         <Switch>
-          <Route path="/homepage">
-            <AlphaWordContainer />
+          <Route path="/AddWords">
+            <AddWords />
           </Route>
           <Route path="/words/edit/:id">
             <WordEdit />
+          </Route>
+          <Route path="/words/delete/:id">
+            <WordDelete />
           </Route>
           <Route path="/">
             <WordList />
@@ -24,6 +34,6 @@ const App = () => {
       </div>
     </Router>
   );
-}
+};
 
-export { App }
+export { App };

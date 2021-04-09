@@ -16,6 +16,7 @@ export const WordList = () => {
         words.map((el) => (
           <li key={el.id}>
             <Link to={`/words/edit/${el.id}`}>{el.words}</Link>
+            <Link to={`/words/delete/${el.id}`}>{el.words}</Link>
           </li>
         ))}
       </ul>
